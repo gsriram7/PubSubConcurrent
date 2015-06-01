@@ -15,7 +15,7 @@ public class Subscriber implements Runnable {
         Thread[] threads = new Thread[NTHREADS];
 
         for (int i = 0; i < NTHREADS; i++) {
-            Runnable subscriber = new MySubrcibable(messageBroker);
+            Runnable subscriber = new MySubrcibable(""+i, messageBroker);
             threads[i] = new Thread(subscriber);
             threads[i].start();
         }
