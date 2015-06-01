@@ -15,18 +15,17 @@ public class Publisher implements Runnable {
         Thread[] threads = new Thread[NTHREADS];
 
         for (int i = 0; i < NTHREADS; i++) {
-            Runnable publish = new MyPublishable("Message #"+i, messageBroker);
+            Runnable publish = new MyPublishable("#"+i, messageBroker);
             threads[i] = new Thread(publish);
             threads[i].start();
         }
 
         for (Thread thread : threads) {
-            if (thread.isAlive())
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

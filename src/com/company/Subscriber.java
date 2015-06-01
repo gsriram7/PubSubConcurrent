@@ -15,18 +15,17 @@ public class Subscriber implements Runnable {
         Thread[] threads = new Thread[NTHREADS];
 
         for (int i = 0; i < NTHREADS; i++) {
-            Runnable subscriber = new MySubrcibable(""+i, messageBroker);
+            Runnable subscriber = new MySubscribable(""+i, messageBroker);
             threads[i] = new Thread(subscriber);
             threads[i].start();
         }
 
         for (Thread thread : threads) {
-            if (thread.isAlive())
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

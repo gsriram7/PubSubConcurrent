@@ -18,13 +18,11 @@ public class Main {
         pool[1].start();
 
         for (Thread threadPool : pool) {
-            if(threadPool.isAlive())
-                try {
-                    threadPool.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                threadPool.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }
