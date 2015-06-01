@@ -4,8 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
         MessageBroker messageBroker = new MessageBroker();
-        Publisher publisher = new Publisher(messageBroker, 5, 1000000);
-        Subscriber subscriber = new Subscriber(messageBroker, 5);
+        int publisherThreads = 5;
+        int subscriberThreads = 5;
+        int numMessages = 5000000 / publisherThreads;
+        Publisher publisher = new Publisher(messageBroker, publisherThreads, numMessages);
+        Subscriber subscriber = new Subscriber(messageBroker, subscriberThreads);
 
         long start = System.currentTimeMillis();
         publisher.execute();
