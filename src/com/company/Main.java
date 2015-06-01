@@ -3,26 +3,16 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-
         MessageBroker messageBroker = new MessageBroker();
+        Publisher publisher = new Publisher(messageBroker, 5, 10000);
+        Subscriber subscriber = new Subscriber(messageBroker, 5);
 
-        Thread[] pool = new Thread[2];
+        long start = System.currentTimeMillis();
+        publisher.execute();
+        subscriber.execute();
 
-        Runnable publisher = new Publisher(messageBroker, 5);
-        pool[0] = new Thread(publisher);
-
-        Runnable subscriber = new Subscriber(messageBroker, 5);
-        pool[1] = new Thread(subscriber);
-
-        pool[0].start();
-        pool[1].start();
-
-        for (Thread threadPool : pool) {
-            try {
-                threadPool.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        publisher.waitForCompletion();
+        subscriber.waitForCompletion();
+        System.out.println("Total "+(System.currentTimeMillis() - start));
     }
 }

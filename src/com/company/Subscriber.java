@@ -1,31 +1,21 @@
 package com.company;
 
-public class Subscriber implements Runnable {
-
-    private final int NTHREADS;
+public class Subscriber extends Executable {
     private MessageBroker messageBroker;
 
     public Subscriber(MessageBroker messageBroker, int NTHREADS) {
-        this.NTHREADS = NTHREADS;
+        super(NTHREADS, "Subscriber");
         this.messageBroker = messageBroker;
     }
 
-    @Override
-    public void run() {
-        Thread[] threads = new Thread[NTHREADS];
-
-        for (int i = 0; i < NTHREADS; i++) {
+    public void execute() {
+        executionStart = System.currentTimeMillis();
+        for (int i = 0; i < threads.length; i++) {
             Runnable subscriber = new MySubscribable(""+i, messageBroker);
             threads[i] = new Thread(subscriber);
             threads[i].start();
         }
-
-        for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
+
+
 }
