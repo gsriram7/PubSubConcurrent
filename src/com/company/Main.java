@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         MessageBroker messageBroker = new MessageBroker();
-        Publisher publisher = new Publisher(messageBroker, 5, 10000);
+        Publisher publisher = new Publisher(messageBroker, 5, 1000000);
         Subscriber subscriber = new Subscriber(messageBroker, 5);
 
         long start = System.currentTimeMillis();

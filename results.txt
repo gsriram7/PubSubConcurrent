@@ -1,0 +1,41 @@
+ABQ
+1000000 5-5
+[Publisher] Time taken for execution: 2586
+[Subscriber] Time taken for execution: 21698
+Total 21723
+
+1000000 1-1
+[Publisher] Time taken for execution: 814
+[Subscriber] Time taken for execution: 4261
+Total 4265
+
+1000000 2-2
+
+[Publisher] Time taken for execution: 1317
+[Subscriber] Time taken for execution: 8382
+Total 8383
+
+1000000 2-3
+[Publisher] Time taken for execution: 1370
+[Subscriber] Time taken for execution: 8360
+Total 8366
+
+1000000 3-2
+[Publisher] Time taken for execution: 1896
+[Subscriber] Time taken for execution: 12286
+Total 12301
+
+1000000 2-5
+[Publisher] Time taken for execution: 1300
+[Subscriber] Time taken for execution: 8191
+Total 8203
+
+1000000 5-2
+[Publisher] Time taken for execution: 2504
+[Subscriber] Time taken for execution: 20511
+Total 20530
+
+1000000 5-5
+[Publisher] Time taken for execution: 2481
+[Subscriber] Time taken for execution: 21101
+Total 21114
