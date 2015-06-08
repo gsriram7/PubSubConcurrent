@@ -4,5 +4,16 @@ import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class MessageBroker {
-    public Queue<String> messageQueue = new ArrayBlockingQueue<>(50000000);
+    private int alivePublisherThreads;
+    public ArrayBlockingQueue<String> messageQueue = new ArrayBlockingQueue<>(5);
+
+    public MessageBroker(int publisherThreads) {
+        alivePublisherThreads = publisherThreads;
+    }
+
+    synchronized public boolean toContinue(String message) {
+        if (message.equals("End"))
+            --alivePublisherThreads;
+        return alivePublisherThreads != 0;
+    }
 }

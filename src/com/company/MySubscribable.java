@@ -13,8 +13,13 @@ public class MySubscribable implements Runnable {
     @Override
     public void run() {
         String message;
-        while (!messageBroker.messageQueue.isEmpty() && !(message = messageBroker.messageQueue.poll()).equals("End")) {
-            System.out.println("From "+name+" :" +message);
+        try {
+            while (!messageBroker.messageQueue.isEmpty() && (messageBroker.toContinue(message = messageBroker.messageQueue.take()))) {
+                if (!message.equals("End"))
+                    System.out.println("From "+name+" :" +message);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
