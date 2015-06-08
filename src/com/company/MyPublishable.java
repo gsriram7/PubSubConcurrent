@@ -15,17 +15,8 @@ public class MyPublishable implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < numMessages; i++) {
-            try {
-                messageBroker.messageQueue.put("thread: " + publisherId + ", message: " + i);
-            } catch (InterruptedException e) {
-                System.out.println("Cant");
-                e.printStackTrace();
-            }
+            messageBroker.messageQueue.add("thread: " + publisherId + ", message: " + i);
         }
-        try {
-            messageBroker.messageQueue.put("End");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        messageBroker.messageQueue.add("End");
     }
 }

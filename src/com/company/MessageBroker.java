@@ -1,11 +1,11 @@
 package com.company;
 
 import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MessageBroker {
     private int alivePublisherThreads;
-    public ArrayBlockingQueue<String> messageQueue = new ArrayBlockingQueue<>(5);
+    public Queue<String> messageQueue = new ConcurrentLinkedQueue<>();
 
     public MessageBroker(int publisherThreads) {
         alivePublisherThreads = publisherThreads;

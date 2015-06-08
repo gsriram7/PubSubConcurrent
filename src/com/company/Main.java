@@ -6,7 +6,7 @@ public class Main {
         int publisherThreads = 5;
         int subscriberThreads = 5;
         MessageBroker messageBroker = new MessageBroker(publisherThreads);
-        int numMessages = 70 / publisherThreads;
+        int numMessages = 5000000 / publisherThreads;
         Publisher publisher = new Publisher(messageBroker, publisherThreads, numMessages);
         Subscriber subscriber = new Subscriber(messageBroker, subscriberThreads);
 
