@@ -17,7 +17,13 @@ public class Publisher extends Executable {
             Runnable publish = new MyPublishable("#"+i, messageBroker, numMessages);
             threads[i] = new Thread(publish);
             threads[i].start();
+            try {
+                threads[i].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        System.out.println("["+this.name+"] Time taken for execution: "+(System.currentTimeMillis()-executionStart));
     }
 
 }

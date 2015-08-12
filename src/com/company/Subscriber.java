@@ -14,7 +14,13 @@ public class Subscriber extends Executable {
             Runnable subscriber = new MySubscribable(""+i, messageBroker);
             threads[i] = new Thread(subscriber);
             threads[i].start();
+            try {
+                threads[i].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        System.out.println("["+this.name+"] Time taken for execution: "+(System.currentTimeMillis()-executionStart));;
     }
 
 
