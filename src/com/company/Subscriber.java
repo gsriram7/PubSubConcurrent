@@ -15,6 +15,7 @@ public class Subscriber extends Executable {
             threads[i] = new Thread(subscriber);
             threads[i].start();
         }
+        waitForCompletion();
     }
 
 

@@ -1,18 +1,19 @@
 package com.company;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MessageBroker {
-    private int alivePublisherThreads;
+    private AtomicInteger alivePublisherThreads;
     public ArrayBlockingQueue<String> messageQueue = new ArrayBlockingQueue<>(10000000);
 
     public MessageBroker(int publisherThreads) {
-        alivePublisherThreads = publisherThreads;
+        alivePublisherThreads = new AtomicInteger(publisherThreads);
     }
 
-    synchronized public boolean toContinue(String message) {
+    public boolean toContinue(String message) {
         if (message.equals("End"))
-            --alivePublisherThreads;
-        return alivePublisherThreads != 0;
+            alivePublisherThreads.decrementAndGet();
+        return !alivePublisherThreads.equals(0);
     }
 }

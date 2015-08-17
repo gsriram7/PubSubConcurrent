@@ -18,6 +18,7 @@ public class Publisher extends Executable {
             threads[i] = new Thread(publish);
             threads[i].start();
         }
+        waitForCompletion();
     }
 
 }
