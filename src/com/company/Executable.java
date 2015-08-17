@@ -12,15 +12,4 @@ abstract public class Executable {
     }
 
     abstract public void execute();
-
-    public void waitForCompletion() {
-        for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("["+this.name+"] Time taken for execution: "+(System.currentTimeMillis()-executionStart));
-    }
 }
